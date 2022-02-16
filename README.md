@@ -23,7 +23,7 @@ CONTIPAY_MODE=DEV
 1 install with composer
 
 ```
-composer require contitouch/contipay:dev-master
+composer require contitouch/contipay:dev-main
 
 ```
 

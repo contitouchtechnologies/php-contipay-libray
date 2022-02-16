@@ -15,8 +15,5 @@
             "email": "nigel.jaure@contitouch.co.zw"
         }
     ],
-    "require": {
-        "njcozw/dotenv": "dev-master"
-    },
     "minimum-stability": "dev"
 }
