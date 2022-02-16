@@ -23,11 +23,8 @@ CONTIPAY_MODE=DEV
 1 install with composer
 
 ```
-composer require contitouch/contipay:1.0-dev
+composer require contitouch/contipay:1.0.0
 
-or 
-
-composer require contitouch/contipay:dev-master
 ```
 
 2 require autoload file and create an instance of contitpay
