@@ -18,5 +18,5 @@
     "require": {
         "njcozw/dotenv": "dev-master"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
