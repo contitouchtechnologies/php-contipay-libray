@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# ContiPay PHP Payment Library V1.00
+# ContiPay PHP Payment Library 1.0.0
 
 ## Requirements
 
@@ -23,7 +23,11 @@ CONTIPAY_MODE=DEV
 1 install with composer
 
 ```
+composer require contitouch/contipay
 
+or 
+
+composer require contitouch/contipay:dev-master
 ```
 
 2 require autoload file and create an instance of contitpay
@@ -31,7 +35,7 @@ CONTIPAY_MODE=DEV
 ```
 <?php
 
-use Nigel\ContipayDirect\ContiPay;
+use ContiTouch\Contipay\ContiPay;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -79,5 +83,7 @@ $payload = [
 
 // process payment
 
-$contipay->processPayment($payload);
+$contipay->processPayment($payload);  // direct payment
+$contipay->processPayment($payload, true);  // redirect payment
+
 ```

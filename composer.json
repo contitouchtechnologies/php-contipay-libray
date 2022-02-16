@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "name": "contitouch/contipay",
     "description": "Contipay payment PHP plugin",
     "type": "library",
@@ -16,5 +17,10 @@
     ],
     "require": {
         "njcozw/dotenv": "dev-master"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "contipay"
+        }
     }
 }
