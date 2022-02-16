@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ad1caf10d5d67c1387322c3d86a10703",
+    "packages": [
+        {
+            "name": "njcozw/dotenv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/njcozw/dotnenv.git",
+                "reference": "7abd4f8ffca66aae03044e2b1ec48c176333f20a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/njcozw/dotnenv/zipball/7abd4f8ffca66aae03044e2b1ec48c176333f20a",
+                "reference": "7abd4f8ffca66aae03044e2b1ec48c176333f20a",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "App\\": "app/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NJCOZW",
+                    "email": "me@nj.co.zw"
+                }
+            ],
+            "description": "PHP dotenv basic module",
+            "support": {
+                "issues": "https://github.com/njcozw/dotnenv/issues",
+                "source": "https://github.com/njcozw/dotnenv/tree/master"
+            },
+            "time": "2021-03-24T10:27:15+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "njcozw/dotenv": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

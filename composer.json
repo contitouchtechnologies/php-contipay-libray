@@ -1,0 +1,20 @@
+{
+    "name": "contitouch/contipay",
+    "description": "Contipay payment PHP plugin",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ContiTouch\\Contipay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nigel Jaure",
+            "email": "nigel.jaure@contitouch.co.zw"
+        }
+    ],
+    "require": {
+        "njcozw/dotenv": "dev-master"
+    }
+}
