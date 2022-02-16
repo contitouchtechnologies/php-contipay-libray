@@ -15,5 +15,5 @@
             "email": "nigel.jaure@contitouch.co.zw"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
