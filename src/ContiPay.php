@@ -2,6 +2,9 @@
 
 namespace ContiTouch\Contipay;
 
+use ContiTouch\Contipay\Http;
+use ContiTouch\Contipay\Util;
+
 class ContiPay
 {
     protected $mode;
