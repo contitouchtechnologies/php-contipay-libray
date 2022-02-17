@@ -15,7 +15,7 @@ CP_TOKEN=key-here
 CP_SECRET=secret-here
 CP_DEV_URL=https://api2-test.contipay.co.zw
 CP_LIVE_URL=https://api-v2.contipay.co.zw
-CONTIPAY_MODE=DEV
+CONTIPAY_MODE=DEV / LIVE
 ```
 
 ## How it works
