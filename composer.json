@@ -6,7 +6,9 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "ContiTouch\\Contipay\\": "src/"
+            "Contipay\\Core\\": "src/core",
+            "Contipay\\Helpers\\": "src/helpers",
+            "Contipay\\Util\\": "src/utils"
         }
     },
     "authors": [
@@ -15,5 +17,10 @@
             "email": "nigel.jaure@contitouch.co.zw"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "nigel/phone_lib": "dev-master",
+        "jenesiszw/phone_lib": "dev-master",
+        "guzzlehttp/guzzle": "^7.0"
+    }
 }
