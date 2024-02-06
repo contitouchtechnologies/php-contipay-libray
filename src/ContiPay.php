@@ -63,8 +63,8 @@ class ContiPay
         $environment_mode = ($this->mode == "DEV") ? 'TRUE' : 'FALSE';
 
         $url = ("FALSE" == $environment_mode)
-            ? $this->environment($this->mode)
-            : $this->environment($this->mode);
+            ? $this->environment()
+            : $this->environment();
 
         return $url . $this->acquire;
     }
