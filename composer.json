@@ -20,8 +20,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "nigel/phone_lib": "dev-master",
         "jenesiszw/phone_lib": "dev-master",
+        "nigel/phone_lib": "dev-master",
         "guzzlehttp/guzzle": "^7.0"
     }
 }
