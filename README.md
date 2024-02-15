@@ -15,7 +15,6 @@ CP_TOKEN=key-here
 CP_SECRET=secret-here
 CP_DEV_URL=https://api2-test.contipay.co.zw
 CP_LIVE_URL=https://api-v2.contipay.co.zw
-CONTIPAY_MODE=DEV / LIVE
 ```
 
 ## How it works
@@ -37,9 +36,9 @@ use ContiTouch\Contipay\ContiPay;
 require_once __DIR__ . '/vendor/autoload.php';
 
 $contipay = new Contipay(
-    'token-here',
-    'secret-here',
-    'url-here'
+    'token-here', // copy from .env or paste directly
+    'secret-here', // copy from .env or paste directly
+    'url-here' // copy from .env or paste directly
 );
 
 
