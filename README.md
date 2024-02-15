@@ -20,7 +20,7 @@ LIVE_URL = https://api-v2.contipay.co.zw
 1. install with composer
 
 ```
-composer require nigel/contipay-php:dev-main
+composer require jenesiszw/phone_lib:dev-master nigel/phone_lib:dev-master nigel/contipay-php:dev-main
 
 ```
 
