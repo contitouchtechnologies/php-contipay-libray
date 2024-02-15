@@ -28,11 +28,11 @@ class BasicDirectPayment
         return $this;
     }
 
-    function prepareBasic(float $amount, string $account, string $currency = 'ZWL', string $description = "", $ref = "", $cell = ""): array
+    function prepareBasic(float $amount, string $account, $ref = "", string $currency = 'ZWL', string $description = "", $cell = ""): array
     {
         $cell = ($cell == '') ? $account : $cell;
 
-        $ref = ($ref == '') ? "R-" . (new Reference())->generate(8) : $ref;
+        $ref = ($ref == '') ? "V-" . (new Reference())->generate(8) : $ref;
 
         $description = ($description == '') ? 'Payment with ref:' . $ref : $description;
 
@@ -54,7 +54,7 @@ class BasicDirectPayment
                 "description" => $description,
                 "webhookUrl" => $this->webhookUrl,
                 "merchantId" => $this->merchantId,
-                "reference" => ($ref == '') ? "" : ""
+                "reference" => $ref
             ],
             "accountDetails" => [
                 "accountNumber" => $account,
