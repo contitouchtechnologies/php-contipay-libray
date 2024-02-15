@@ -1,6 +1,6 @@
 {
     "version": "1.0.0",
-    "name": "contitouch/contipay",
+    "name": "nigel/contipay-php",
     "description": "Contipay payment PHP plugin",
     "type": "library",
     "license": "MIT",
