@@ -23,7 +23,7 @@ CONTIPAY_MODE=DEV / LIVE
 1 install with composer
 
 ```
-composer require contitouch/contipay:dev-main
+composer require nigel/contipay-php:dev-main
 
 ```
 
@@ -36,51 +36,35 @@ use ContiTouch\Contipay\ContiPay;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$contipay = new ContiPay();
+$contipay = new Contipay(
+    'token-here',
+    'secret-here',
+    'url-here'
+);
+
 
 ```
 
 3 process payment
 
 ```
-// payload example
+$payload = (
+    new BasicDirectPayment(
+        "www.contipay.co.zw/api/webhook",
+        35
+    )
+)
+    ->setUpProvider('Ecocash', 'EC')
+    ->prepareBasic(
+        100,
+        (new Phone('0782000340'))->internationalFormat()
+    );
 
-$payload = [
-    "customer" => [
-        "nationalId" => "",
-        "firstName" => "Test",
-        "middleName" => "-",
-        "surname" => "User",
-        "email" => "test@test.co",
-        "cell" => "26**0340**",
-        "countryCode" => "ZW"
-    ],
-    "transaction" => [
-        "providerCode" => "TF",
-        "providerName" => "Zipit",
-        "amount" =>  (float) 20,
-        "currencyCode" => "ZWL",
-        "description" => "Test",
-        "webhookUrl" => "test.co",
-        "successUrl" => "www.contipay.co.zw/success",
-        "cancelUrl" => "www.contipay.co.zw/error",
-        "merchantId" => {merchant},
-        "reference" => "TS-123"
-    ],
-    "accountDetails" => [
-        "accountNumber" => "0000",
-        "accountName" => "test",
-        "accountExtra" => [
-            "smsNumber" => "26**0340**",
-            "expiry" => "122021",
-            "cvv" => "003"
-        ]
-    ]
-];
+    
 
-// process payment
+$res = $contipay->setPaymentMethod('direct')->pay($payload);
 
-$contipay->processPayment($payload);  // direct payment
-$contipay->processPayment($payload, true);  // redirect payment
+header('Content-type: application/json');
 
+echo $res;
 ```
