@@ -20,7 +20,6 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": "^7.4",
         "jenesiszw/phone_lib": "^1.0",
         "nigel/phone_lib": "^1.0",
         "guzzlehttp/guzzle": "^7.0"
