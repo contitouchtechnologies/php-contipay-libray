@@ -52,11 +52,11 @@ $contipay = new Contipay(
 
 $payload = (
     new BasicDirectPayment(
+        $mechantCode, // replace with merchant code
         "https://www.contipay.co.zw/api/webhook", // webhook url
-        $mechantCode // replace with merchant code
     )
 )
-    ->setUpProvider('Ecocash', 'EC')
+    ->setUpProvider('InnBucks', 'IB')
     ->prepareBasic(
         100,
         (new Phone('0782000340'))->internationalFormat()
@@ -83,8 +83,8 @@ $contipay = new Contipay(
 
 $payload = (
     new RedirectBasicPayment(
-        "https://www.contipay.co.zw/api/webhook", // webhook url
         $mechantCode, // replace with merchant code
+        "https://www.contipay.co.zw/api/webhook", // webhook url
         "https://www.contipay.co.zw/api/success", // success url
         "https://www.contipay.co.zw/api/cancel",  // cancel url
     )

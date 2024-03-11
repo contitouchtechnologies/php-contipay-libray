@@ -12,7 +12,7 @@ class BasicDirectPayment
     protected string $providerCode;
     protected int $merchantId;
 
-    public function __construct(string $webhookUrl, int $merchantId, string $successUrl = '', string $cancelUrl = '')
+    public function __construct(int $merchantId, string $webhookUrl, string $successUrl = '', string $cancelUrl = '')
     {
         $this->webhookUrl = $webhookUrl;
         $this->successUrl = $successUrl;
@@ -28,7 +28,7 @@ class BasicDirectPayment
         return $this;
     }
 
-    function prepareBasic(float $amount, string $account, $ref = "", string $currency = 'ZWL', string $description = "", $cell = ""): array
+    function prepareBasic(float $amount, string $account, string $currency = 'ZWL', $ref = "", string $description = "", $cell = ""): array
     {
         $cell = ($cell == '') ? $account : $cell;
 

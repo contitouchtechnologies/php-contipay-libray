@@ -12,7 +12,7 @@ class RedirectBasicPayment
 
     protected int $merchantId;
 
-    public function __construct(string $webhookUrl, int $merchantId, string $successUrl, string $cancelUrl)
+    public function __construct(int $merchantId, string $webhookUrl, string $successUrl, string $cancelUrl)
     {
         $this->webhookUrl = $webhookUrl;
         $this->successUrl = $successUrl;
@@ -20,7 +20,7 @@ class RedirectBasicPayment
         $this->merchantId = $merchantId;
     }
 
-    function prepareBasic(float $amount, string $account, $ref = "", string $currency = 'USD', string $description = "", string $cell = "", bool $isCod = false, $isCoc = false): array
+    function prepareBasic(float $amount, string $account, string $currency = 'USD', $ref = "", string $description = "", string $cell = "", bool $isCod = false, $isCoc = false): array
     {
         $cell = ($cell == '') ? $account : $cell;
 
