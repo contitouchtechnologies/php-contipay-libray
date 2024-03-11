@@ -9,9 +9,16 @@ class SimpleRedirectMethod
     protected string $successUrl;
     protected string $cancelUrl;
     protected string $webhookUrl;
-
     protected int $merchantId;
 
+    /**
+     * Constructor for initializing class properties.
+     *
+     * @param int    $merchantId  The merchant ID.
+     * @param string $webhookUrl  The URL for webhook notifications.
+     * @param string $successUrl  The URL to redirect to upon successful transaction.
+     * @param string $cancelUrl   The URL to redirect to upon canceled transaction.
+     */
     public function __construct(int $merchantId, string $webhookUrl, string $successUrl, string $cancelUrl)
     {
         $this->webhookUrl = $webhookUrl;
@@ -20,36 +27,60 @@ class SimpleRedirectMethod
         $this->merchantId = $merchantId;
     }
 
-    function preparePayload(float $amount, string $account, string $currency = 'USD', $ref = "", string $description = "", string $cell = "", bool $isCod = false, $isCoc = false): array
-    {
-        $cell = ($cell == '') ? $account : $cell;
+    /**
+     * Prepare payment payload for transaction.
+     *
+     * @param float       $amount      The amount of the transaction.
+     * @param string      $account     The account name or identifier.
+     * @param string      $currency    The currency code (default: 'USD').
+     * @param string|null $ref         The reference for the transaction (optional).
+     * @param string      $description The description for the transaction (optional).
+     * @param string      $cell        The cell number (optional).
+     * @param bool        $isCod       Indicates if the transaction is Cash on Delivery (optional).
+     * @param bool        $isCoc       Indicates if the transaction is Cash on Collection (optional).
+     *
+     * @return array The prepared payment payload.
+     */
+    public function preparePayload(
+        float $amount,
+        string $account,
+        string $currency = 'USD',
+        ?string $ref = null,
+        string $description = "",
+        string $cell = "",
+        bool $isCod = false,
+        bool $isCoc = false
+    ): array {
+        // If $cell is not provided, use $account
+        $cell = ($cell === '') ? $account : $cell;
 
-        $ref = ($ref == '') ? "V-" . (new Reference())->generate(8) : $ref;
+        // Generate reference if not provided
+        $ref = ($ref === null) ? "V-" . (new Reference())->generate(8) : $ref;
 
-        $description = ($description == '') ? 'Payment with ref:' . $ref : $description;
+        // Default description if not provided
+        $description = ($description === '') ? 'Payment with ref:' . $ref : $description;
 
-        return
-            [
-                "reference" => $ref,
-                'cod' => $isCod,
-                'coc' => $isCoc,
-                "description" => $description,
-                "amount" => $amount,
-
-                'customer' => array(
-                    'firstName' => $account,
-                    'surname' => $account,
-                    'middleName' => '-',
-                    "nationalId" => '-',
-                    'email' => "$account@contipay.co.zw",
-                    'cell' => $cell,
-                    'countryCode' => 'zw',
-                ),
-                "currencyCode" => $currency,
-                "merchantId" => $this->merchantId,
-                "webhookUrl" => $this->webhookUrl,
-                'successUrl' => $this->successUrl,
-                'cancelUrl' => $this->cancelUrl
-            ];
+        // Construct and return payment payload
+        return [
+            "reference" => $ref,
+            'cod' => $isCod,
+            'coc' => $isCoc,
+            "description" => $description,
+            "amount" => $amount,
+            'customer' => [
+                'firstName' => $account,
+                'surname' => $account,
+                'middleName' => '-',
+                "nationalId" => '-',
+                'email' => "$account@contipay.co.zw",
+                'cell' => $cell,
+                'countryCode' => 'zw',
+            ],
+            "currencyCode" => $currency,
+            "merchantId" => $this->merchantId,
+            "webhookUrl" => $this->webhookUrl,
+            'successUrl' => $this->successUrl,
+            'cancelUrl' => $this->cancelUrl,
+        ];
     }
 }
