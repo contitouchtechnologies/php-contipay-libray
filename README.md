@@ -1,4 +1,4 @@
-# ContiPay PHP Client 1.0.2 Documentation
+# ContiPay PHP Client 1.0.5 Documentation
 
 ## Requirements
 
