@@ -1,5 +1,5 @@
 {
-    "version": "1.0.3",
+    "version": "1.0.4",
     "name": "nigel/contipay-php",
     "description": "Contipay PHP Client",
     "type": "library",
