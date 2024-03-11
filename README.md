@@ -1,4 +1,4 @@
-# ContiPay PHP Client 1.0.5 Documentation
+# ContiPay PHP Client Documentation
 
 ## Requirements
 
@@ -15,7 +15,7 @@ LIVE_URL = https://api-v2.contipay.co.zw
 
 ## How it Works
 
-### 1. Installation with Composer
+### 1. Install latest with Composer
 
 ```bash
 composer require nigel/contipay-php:^1.0.6
@@ -80,7 +80,7 @@ $payload = (
         $successUrl,
         $cancelUrl,
     )
-)->preparePayload(1$amount, $phone);
+)->preparePayload($amount, $phone);
 
 $res = $contipay
     ->setAppMode("DEV")  // LIVE as another option
