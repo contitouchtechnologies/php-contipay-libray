@@ -51,7 +51,7 @@ $contipay = new Contipay(
 
 $payload = (
     new BasicDirectPayment(
-        "www.contipay.co.zw/api/webhook", // webhook url
+        "https://www.contipay.co.zw/api/webhook", // webhook url
         $mechantCode // replace with merchant code
     )
 )
@@ -82,10 +82,10 @@ $contipay = new Contipay(
 
 $payload = (
     new BasicDirectPayment(
-        "www.contipay.co.zw/api/webhook", // webhook url
+        "https://www.contipay.co.zw/api/webhook", // webhook url
         $mechantCode, // replace with merchant code
-        "www.contipay.co.zw/api/success", // success url
-        "www.contipay.co.zw/api/cancel",  // cancel url
+        "https://www.contipay.co.zw/api/success", // success url
+        "https://www.contipay.co.zw/api/cancel",  // cancel url
     )
 )
     ->prepareBasic(
