@@ -39,13 +39,55 @@ class Contipay
      */
     protected $acquireUrl = 'acquire/payment';
 
-    public function __construct(string $token, string $secret, string $url)
+    /**
+     * Uat url
+     *
+     * @var string
+     */
+    protected $uatURL = 'https://api2-test.contipay.co.zw';
+
+    /**
+     * Live url
+     *
+     * @var string
+     */
+    protected $liveURL = 'https://api-v2.contipay.co.zw';
+
+    public function __construct(string $token, string $secret)
     {
-        $this->url = $url;
         $this->token = $token;
         $this->secret = $secret;
 
+    }
+
+    /**
+     * ContiPay environment mode
+     *
+     * @param string $mode
+     * @return self
+     */
+    function setAppMode(string $mode = "DEV")
+    {
+        $this->url = ($mode == 'DEV') ? $this->uatURL : $this->liveURL;
+
         $this->initHttpClient();
+
+        return $this;
+    }
+
+    /**
+     * Update urls from the defaults
+     *
+     * @param string $devURL
+     * @param string $liveURL
+     * @return self
+     */
+    function updateURL(string $devURL, string $liveURL)
+    {
+        $this->uatURL = $devURL;
+        $this->liveURL = $liveURL;
+
+        return $this;
     }
 
     /**
@@ -75,7 +117,7 @@ class Contipay
      * @param array $payload
      * 
      */
-    function pay(array $payload)
+    function process(array $payload)
     {
 
         $client = $this->client;
