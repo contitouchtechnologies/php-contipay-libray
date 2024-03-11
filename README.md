@@ -46,11 +46,13 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
+$phone = (new Phone('0782000340'))->internationalFormat();
+
 $payload = (new SimpleDirectMethod($merchantCode, $webhookUrl))
     ->setUpProvider('InnBucks', 'IB')
     ->preparePayload(
-        10,
-        (new Phone('0782000340'))->internationalFormat(),
+         $amount,
+         $phone,
     );
 
 $res = $contipay
@@ -71,6 +73,8 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
+$phone = (new Phone('0782000340'))->internationalFormat();
+
 $payload = (
     new SimpleRedirectMethod(
         $merchantCode,
@@ -78,7 +82,7 @@ $payload = (
         $successUrl,
         $cancelUrl,
     )
-)->preparePayload(10.0, (new Phone('0782000340'))->internationalFormat());
+)->preparePayload(1$amount, $phone);
 
 $res = $contipay
     ->setAppMode("DEV")  // LIVE as another option
