@@ -14,7 +14,7 @@
 composer require nigel/contipay-php:^1.0.6
 ```
 
-### 2. Require Autoload File and Class Imports
+### 2. Require Autoload File and Classes Imports
 
 ```php
 <?php
