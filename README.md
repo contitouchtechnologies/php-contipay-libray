@@ -29,9 +29,10 @@ composer require jenesiszw/phone_lib:dev-master nigel/phone_lib:dev-master nigel
 ```
 <?php
 
+use JenesisZw\Phone;
 use Contipay\Core\Contipay;
 use Contipay\Helpers\BasicDirectPayment;
-use JenesisZw\Phone;
+use Contipay\Helpers\RedirectBasicPayment;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -81,7 +82,7 @@ $contipay = new Contipay(
 
 
 $payload = (
-    new BasicDirectPayment(
+    new RedirectBasicPayment(
         "https://www.contipay.co.zw/api/webhook", // webhook url
         $mechantCode, // replace with merchant code
         "https://www.contipay.co.zw/api/success", // success url
