@@ -18,10 +18,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "prefer-stable": false,
+    "prefer-stable": true,
     "require": {
-        "jenesiszw/phone_lib": "^1.0",
-        "nigel/phone_lib": "^1.0",
+        "jenesiszw/phone_lib": "dev-master",
+        "nigel/phone_lib": "dev-master",
         "guzzlehttp/guzzle": "^7.0"
     }
 }
