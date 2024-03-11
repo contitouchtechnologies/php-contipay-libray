@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# ContiPay PHP Payment Library 1.0.0
+# ContiPay PHP Payment Library 1.0.1
 
 ## Requirements
 
@@ -35,13 +35,6 @@ use JenesisZw\Phone;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$contipay = new Contipay(
-    'token-here', // copy from .env or paste directly
-    'secret-here', // copy from .env or paste directly
-    'url-here' // copy from .env or paste directly
-);
-
-
 ```
 
 3. process payment
@@ -49,6 +42,13 @@ $contipay = new Contipay(
 `i.` Basic Direct Payment Example
 
 ```
+$contipay = new Contipay(
+    'token-here', // copy from .env or paste directly
+    'secret-here', // copy from .env or paste directly
+    'url-here' // copy from .env or paste directly
+);
+
+
 $payload = (
     new BasicDirectPayment(
         "www.contipay.co.zw/api/webhook", // webhook url
@@ -70,4 +70,34 @@ header('Content-type: application/json');
 echo $res;
 ```
 
-`ii.` Direct Payment Example
+`ii.` Basic Redirect Payment Example
+
+```
+$contipay = new Contipay(
+    'token-here', // copy from .env or paste directly
+    'secret-here', // copy from .env or paste directly
+    'url-here' // copy from .env or paste directly
+);
+
+
+$payload = (
+    new BasicDirectPayment(
+        "www.contipay.co.zw/api/webhook", // webhook url
+        $mechantCode, // replace with merchant code
+        "www.contipay.co.zw/api/success", // success url
+        "www.contipay.co.zw/api/cancel",  // cancel url
+    )
+)
+    ->prepareBasic(
+        10,
+        (new Phone('0782000340'))->internationalFormat()
+    );
+
+
+
+$res = $contipay->setPaymentMethod('direct')->pay($payload);
+
+header('Content-type: application/json');
+
+echo $res;
+```
