@@ -18,7 +18,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "prefer-stable": true,
+    "prefer-stable": false,
     "require": {
         "jenesiszw/phone_lib": "dev-master",
         "nigel/phone_lib": "dev-master",
