@@ -181,3 +181,5 @@ echo $res;
 - Ensure to set the appropriate mode (`DEV` or `LIVE`) using the `setAppMode` method before processing payments.
 
 - The provided examples cover basic scenarios, including direct and redirect payment methods, customer information setup, and transaction details.
+
+- ContiPay JavaScript Alternative [here](https://github.com/njzw/contipay-js-client)
