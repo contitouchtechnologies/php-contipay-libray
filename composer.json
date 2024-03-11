@@ -1,7 +1,7 @@
 {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "name": "nigel/contipay-php",
-    "description": "Contipay payment PHP plugin",
+    "description": "Contipay PHP Client",
     "type": "library",
     "license": "MIT",
     "autoload": {
