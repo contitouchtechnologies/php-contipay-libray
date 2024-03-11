@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe35e944d525ff15740ea5e44606c2bd",
+    "content-hash": "05cc2c58afef0c6a6e425d97ab9e6f72",
     "packages": [
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.13.30",
+            "version": "8.13.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "e09260a4a470b3737877c0f04f964e8a4938ebbd"
+                "reference": "a4934bddda4672d12f21728e08bd575913bdc310"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/e09260a4a470b3737877c0f04f964e8a4938ebbd",
-                "reference": "e09260a4a470b3737877c0f04f964e8a4938ebbd",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/a4934bddda4672d12f21728e08bd575913bdc310",
+                "reference": "a4934bddda4672d12f21728e08bd575913bdc310",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +76,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php"
             },
-            "time": "2024-02-09T12:16:23+00:00"
+            "time": "2024-02-26T08:31:45+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -504,12 +504,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/njzw/phone.git",
-                "reference": "88cd3bf58b217bb49d6a10cab17108aef96dc0ad"
+                "reference": "9912bfb7d0e55fc22892404157dd521b663a52fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/njzw/phone/zipball/88cd3bf58b217bb49d6a10cab17108aef96dc0ad",
-                "reference": "88cd3bf58b217bb49d6a10cab17108aef96dc0ad",
+                "url": "https://api.github.com/repos/njzw/phone/zipball/9912bfb7d0e55fc22892404157dd521b663a52fc",
+                "reference": "9912bfb7d0e55fc22892404157dd521b663a52fc",
                 "shasum": ""
             },
             "require": {
@@ -537,7 +537,7 @@
                 "issues": "https://github.com/njzw/phone/issues",
                 "source": "https://github.com/njzw/phone/tree/master"
             },
-            "time": "2023-11-15T09:19:36+00:00"
+            "time": "2024-02-19T10:32:09+00:00"
         },
         {
             "name": "psr/http-client",
@@ -895,8 +895,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nigel/phone_lib": 20,
-        "jenesiszw/phone_lib": 20
+        "jenesiszw/phone_lib": 20,
+        "nigel/phone_lib": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

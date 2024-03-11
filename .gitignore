@@ -1,3 +1,7 @@
 /vendor
 test.php
+basic-redirect.php
+basic-direct.php
+redirect.php
+direct.php
 .env
