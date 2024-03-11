@@ -6,7 +6,6 @@
 
 2. ContiPay Secret and Key
 
-
 ## How it Works
 
 ### 1. Install latest with Composer
@@ -15,7 +14,7 @@
 composer require nigel/contipay-php:^1.0.6
 ```
 
-### 2. Require Autoload File and Create an Instance of Contipay
+### 2. Require Autoload File and Class Imports
 
 ```php
 <?php
