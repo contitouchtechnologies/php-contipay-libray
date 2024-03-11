@@ -17,8 +17,8 @@
             "email": "nigel.jaure@contitouch.co.zw"
         }
     ],
-    "minimum-stability": "stable",
-    "prefer-stable": false,
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "jenesiszw/phone_lib": "dev-master",
         "nigel/phone_lib": "dev-master",
