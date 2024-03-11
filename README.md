@@ -64,7 +64,7 @@ $payload = (
 
 
 
-$res = $contipay->setPaymentMethod('direct')->pay($payload);
+$res = $contipay->setPaymentMethod()->pay($payload);
 
 header('Content-type: application/json');
 
