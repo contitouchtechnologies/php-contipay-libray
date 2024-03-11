@@ -18,15 +18,13 @@ LIVE_URL = https://api-v2.contipay.co.zw
 ### 1. Installation with Composer
 
 ```bash
-composer require jenesiszw/phone_lib:dev-master nigel/phone_lib:dev-master nigel/contipay-php:^1.0.5
+composer require nigel/contipay-php:^1.0.6
 ```
 
 ### 2. Require Autoload File and Create an Instance of Contipay
 
 ```php
 <?php
-
-use JenesisZw\Phone;
 use Contipay\Core\Contipay;
 use Contipay\Helpers\DirectMethod;
 use Contipay\Helpers\RedirectMethod;
@@ -46,7 +44,7 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
-$phone = (new Phone('0782000340'))->internationalFormat();
+$phone = "263782000340";
 
 $payload = (new SimpleDirectMethod($merchantCode, $webhookUrl))
     ->setUpProvider('InnBucks', 'IB')
@@ -73,7 +71,7 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
-$phone = (new Phone('0782000340'))->internationalFormat();
+$phone = "263782000340";
 
 $payload = (
     new SimpleRedirectMethod(
@@ -102,7 +100,7 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
-$phone = (new Phone('0782000340'))->internationalFormat();
+$phone = "263782000340";
 
 $payload = (
     new DirectMethod(
@@ -139,7 +137,7 @@ $contipay = new Contipay(
     'secret-here', // copy from .env or paste directly
 );
 
-$phone = (new Phone('0782000340'))->internationalFormat();
+$phone = "263782000340";
 
 $payload = (
     new RedirectMethod(

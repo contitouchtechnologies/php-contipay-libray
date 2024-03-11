@@ -1,5 +1,5 @@
 {
-    "version": "1.0.5",
+    "version": "1.0.6",
     "name": "nigel/contipay-php",
     "description": "Contipay PHP Client",
     "type": "library",
@@ -14,13 +14,13 @@
     "authors": [
         {
             "name": "Nigel Jaure",
-            "email": "nigel.jaure@contitouch.co.zw"
+            "email": "nigel.jaure@contitouch.co.zw",
+            "role": "Developer"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "require": {
-        "jenesiszw/phone_lib": "dev-master",
-        "nigel/phone_lib": "dev-master",
         "guzzlehttp/guzzle": "^7.0"
     }
 }
