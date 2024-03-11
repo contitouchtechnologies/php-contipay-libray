@@ -3,84 +3,127 @@
 class WebhookExample
 {
     /**
-     * Transaction is awaiting Confirmation or further Processing
-     *
-     * @var int
+     * Transaction status: Pending - awaiting confirmation or further processing.
      */
-    const PENDING = 0;
+    const STATUS_PENDING = 0;
 
     /**
-     * Transaction has been paid Sucesfully
-     *
-     * @var int
+     * Transaction status: Paid - successfully paid.
      */
-    const PAID = 1;
+    const STATUS_PAID = 1;
 
     /**
-     * Transaction has been Refunded back to Client from merchant
-     *
-     * @var int
+     * Transaction status: Refunded - refunded back to the client from the merchant.
      */
-    const REFUNDED = 2;
+    const STATUS_REFUNDED = 2;
 
     /**
-     * Transaction Has failed with to process due to an error
-     *
-     * @var int
+     * Transaction status: Error - failed to process due to an error.
      */
-    const ERROR = 3;
+    const STATUS_ERROR = 3;
 
     /**
-     * Transaction was declined
-     *
-     * @var int
+     * Transaction status: Declined - transaction was declined.
      */
-    const DECLINED = 4;
+    const STATUS_DECLINED = 4;
 
     /**
-     * Transaction has been Confirmed
-     *
-     * @var int
+     * Transaction status: Confirmed - transaction has been confirmed.
      */
-    const CONFIRMED = 5;
+    const STATUS_CONFIRMED = 5;
 
     /**
-     * Transaction has been Queued
-     *
-     * @var int
+     * Transaction status: Queued - transaction has been queued.
      */
-    const QUEUED = 6;
+    const STATUS_QUEUED = 6;
 
     /**
-     * Transaction has been Approved
-     *
-     * @var int
+     * Transaction status: Approved - transaction has been approved.
      */
-    const APPROVED = 7;
+    const STATUS_APPROVED = 7;
 
     /**
-     * Transaction has been posted to external party fo further processing
-     *
-     * @var int
+     * Transaction status: Submitted - transaction has been posted to an external party for further processing.
      */
-    const SUBMITTED = 8;
+    const STATUS_SUBMITTED = 8;
 
-    public static function hook($response, $transaction_id)
+    /**
+     * Handle webhook response based on transaction status.
+     *
+     * @param object $response The webhook response object.
+     * @param int $transaction_id The ID of the transaction.
+     * @return void
+     */
+    public static function handleWebhookResponse(object $response, int $transaction_id): void
     {
-        if ($response->statusCode != 3) {
-            if (in_array($response->statusCode, [self::QUEUED, self::APPROVED, self::PENDING])) {
-                // handle when transaction is pending
-            } else if ($response->statusCode == self::CONFIRMED) {
-                // handle when transaction is confirmed(optional)
-            } else if ($response->statusCode == self::PAID) {
-                // handle when transaction is paid
-            } else if ($response->statusCode == 9) {
-                // handle when transaction is not paid and errors occurred
-            } else {
-                // handle when transaction is not paid and errors occurred
-            }
-        } else {
-            // handle when transaction is not paid and errors occurred
+        switch ($response->statusCode) {
+            case self::STATUS_QUEUED:
+            case self::STATUS_APPROVED:
+            case self::STATUS_PENDING:
+                self::handlePendingTransaction();
+                break;
+            case self::STATUS_CONFIRMED:
+                self::handleConfirmedTransaction();
+                break;
+            case self::STATUS_PAID:
+                self::handlePaidTransaction();
+                break;
+            case 9:
+                self::handleUnpaidTransactionWithError();
+                break;
+            default:
+                self::handleUnpaidTransactionWithOtherErrors();
+                break;
         }
+    }
+
+    /**
+     * Handle pending transaction.
+     *
+     * @return void
+     */
+    private static function handlePendingTransaction(): void
+    {
+        // Handle when transaction is pending.
+    }
+
+    /**
+     * Handle confirmed transaction.
+     *
+     * @return void
+     */
+    private static function handleConfirmedTransaction(): void
+    {
+        // Handle when transaction is confirmed (optional).
+    }
+
+    /**
+     * Handle paid transaction.
+     *
+     * @return void
+     */
+    private static function handlePaidTransaction(): void
+    {
+        // Handle when transaction is paid.
+    }
+
+    /**
+     * Handle unpaid transaction with error.
+     *
+     * @return void
+     */
+    private static function handleUnpaidTransactionWithError(): void
+    {
+        // Handle when transaction is not paid and errors occurred.
+    }
+
+    /**
+     * Handle unpaid transaction with other errors.
+     *
+     * @return void
+     */
+    private static function handleUnpaidTransactionWithOtherErrors(): void
+    {
+        // Handle when transaction is not paid and errors occurred.
     }
 }
