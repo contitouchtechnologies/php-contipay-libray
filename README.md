@@ -6,12 +6,6 @@
 
 2. ContiPay Secret and Key
 
-## API URL
-
-```markdown
-UAT_URL = https://api2-test.contipay.co.zw
-LIVE_URL = https://api-v2.contipay.co.zw
-```
 
 ## How it Works
 
