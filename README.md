@@ -50,18 +50,12 @@ $contipay = new Contipay(
 );
 
 
-$payload = (
-    new BasicDirectPayment(
-        $mechantCode, // replace with merchant code
-        "https://www.contipay.co.zw/api/webhook", // webhook url
-    )
-)
+$payload = (new BasicDirectPayment(35, "www.contipay.co.zw/api/webhook", ))
     ->setUpProvider('InnBucks', 'IB')
     ->prepareBasic(
-        100,
-        (new Phone('0782000340'))->internationalFormat()
+        10,
+        (new Phone('0782000340'))->internationalFormat(),
     );
-
 
 
 $res = $contipay->setPaymentMethod()->pay($payload);
@@ -83,16 +77,12 @@ $contipay = new Contipay(
 
 $payload = (
     new RedirectBasicPayment(
-        $mechantCode, // replace with merchant code
-        "https://www.contipay.co.zw/api/webhook", // webhook url
-        "https://www.contipay.co.zw/api/success", // success url
-        "https://www.contipay.co.zw/api/cancel",  // cancel url
+        35,
+        "www.contipay.co.zw/api/webhook",
+        "www.contipay.co.zw/api/success",
+        "www.contipay.co.zw/api/cancel",
     )
-)
-    ->prepareBasic(
-        10,
-        (new Phone('0782000340'))->internationalFormat()
-    );
+)->prepareBasic(10, (new Phone('0782000340'))->internationalFormat());
 
 
 
