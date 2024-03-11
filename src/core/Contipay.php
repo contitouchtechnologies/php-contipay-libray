@@ -1,129 +1,76 @@
 <?php
+
 namespace Contipay\Core;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Contipay
 {
-    /**
-     * ContiPay token
-     *
-     * @var string
-     */
     protected string $token;
-
-    /**
-     * ContiPay secret
-     *
-     * @var string
-     */
     protected string $secret;
-    /**
-     * API url
-     *
-     * @var string
-     */
     protected string $url;
-
-    /**
-     * Payment method. Either direct or redirect payment method
-     *
-     * @var string
-     */
     protected string $paymentMethod = 'direct';
-
-    /**
-     * Acquire endpoint
-     *
-     * @var string
-     */
-    protected $acquireUrl = 'acquire/payment';
-
-    /**
-     * Uat url
-     *
-     * @var string
-     */
-    protected $uatURL = 'https://api2-test.contipay.co.zw';
-
-    /**
-     * Live url
-     *
-     * @var string
-     */
-    protected $liveURL = 'https://api-v2.contipay.co.zw';
+    protected string $acquireUrl = 'acquire/payment';
+    protected string $uatURL = 'https://api2-test.contipay.co.zw';
+    protected string $liveURL = 'https://api-v2.contipay.co.zw';
+    protected ?Client $client = null;
 
     public function __construct(string $token, string $secret)
     {
         $this->token = $token;
         $this->secret = $secret;
-
     }
 
     /**
-     * ContiPay environment mode
+     * Set ContiPay environment mode.
      *
      * @param string $mode
      * @return self
      */
-    function setAppMode(string $mode = "DEV")
+    public function setAppMode(string $mode = "DEV"): self
     {
         $this->url = ($mode == 'DEV') ? $this->uatURL : $this->liveURL;
-
         $this->initHttpClient();
-
         return $this;
     }
 
     /**
-     * Update urls from the defaults
+     * Update URLs from the defaults.
      *
      * @param string $devURL
      * @param string $liveURL
      * @return self
      */
-    function updateURL(string $devURL, string $liveURL)
+    public function updateURL(string $devURL, string $liveURL): self
     {
         $this->uatURL = $devURL;
         $this->liveURL = $liveURL;
-
         return $this;
     }
 
     /**
-     * Set payment method. By default it's direct
+     * Set payment method. By default it's direct.
      *
      * @param string $method
      * @return self
      */
-
-    /**
-     * HTTP Client
-     *
-     */
-    protected $client;
-
-    function setPaymentMethod(string $method = 'direct')
+    public function setPaymentMethod(string $method = 'direct'): self
     {
         $this->paymentMethod = ($method == 'direct') ? "POST" : "PUT";
-
         return $this;
     }
 
-
     /**
-     * Process payment
+     * Process payment.
      *
      * @param array $payload
-     * 
+     * @return string JSON response
      */
-    function process(array $payload)
+    public function process(array $payload): string
     {
-
-        $client = $this->client;
-
         try {
-            $response = $client->request($this->paymentMethod, "/{$this->acquireUrl}", [
+            $response = $this->client->request($this->paymentMethod, "/{$this->acquireUrl}", [
                 'auth' => [$this->token, $this->secret],
                 'headers' => [
                     'Accept' => 'application/json',
@@ -133,26 +80,18 @@ class Contipay
             ]);
 
             return $response->getBody()->getContents();
-        } catch (\Throwable $th) {
-
-            return json_encode(array('status' => 'Error', 'message' => $th->getMessage()));
+        } catch (GuzzleException $e) {
+            return json_encode(['status' => 'Error', 'message' => $e->getMessage()]);
         }
-
     }
 
     /**
-     * Setup HTTP client
+     * Setup HTTP client.
      *
-     * @return self
+     * @return void
      */
-    function initHttpClient()
+    protected function initHttpClient(): void
     {
-        $client = new Client(['base_uri' => $this->url]);
-
-        $this->client = $client;
-
-        return $this;
+        $this->client = new Client(['base_uri' => $this->url]);
     }
-
-
 }
