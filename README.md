@@ -11,7 +11,7 @@
 ### 1. Install latest with Composer
 
 ```bash
-composer require nigel/contipay-php:^1.0.6
+composer require nigel/contipay-php:^2.0.0
 ```
 
 ### 2. Require Autoload File and Classes Imports
@@ -19,12 +19,22 @@ composer require nigel/contipay-php:^1.0.6
 ```php
 <?php
 use Contipay\Core\Contipay;
-use Contipay\Helpers\DirectMethod;
-use Contipay\Helpers\RedirectMethod;
-use Contipay\Helpers\SimpleDirectMethod;
-use Contipay\Helpers\SimpleRedirectMethod;
+use Contipay\Helpers\Payload\PayloadGenerator;
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+
+$webhookUrl = "https://www.contipay.co.zw/api/webhook";
+$successUrl = "https://www.contipay.co.zw/api/success";
+$cancelUrl = "https://www.contipay.co.zw/api/cancel";
+$merchantCode = 00;
+$phone = "2637****340";
+$amount = (float) 10;
+
+$contipay = new Contipay(
+    'token-here', // copy from .env or paste directly
+    'secret-here', // copy from .env or paste directly
+);
 ```
 
 ### 3. Process Payment
@@ -32,22 +42,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 #### i. Basic Direct Payment Example
 
 ```php
-$contipay = new Contipay(
-    'token-here', // copy from .env or paste directly
-    'secret-here', // copy from .env or paste directly
-);
 
-$phone = "263782000340";
-
-$payload = (new SimpleDirectMethod($merchantCode, $webhookUrl))
-    ->setUpProvider('InnBucks', 'IB')
-    ->preparePayload(
-         $amount,
-         $phone,
+$payload = (new PayloadGenerator($merchantCode, $webhookUrl))
+    ->setUpProviders('InnBucks', 'IB')
+    ->simpleDirectPayload(
+        $amount,
+        $phone,
     );
 
-$res = $contipay
-    ->setAppMode("DEV")  // LIVE as another option
+$res = $contipay->setAppMode("DEV")
     ->setPaymentMethod()
     ->process($payload);
 
@@ -59,25 +62,21 @@ echo $res;
 #### ii. Basic Redirect Payment Example
 
 ```php
-$contipay = new Contipay(
-    'token-here', // copy from .env or paste directly
-    'secret-here', // copy from .env or paste directly
-);
-
-$phone = "263782000340";
 
 $payload = (
-    new SimpleRedirectMethod(
+    new PayloadGenerator(
         $merchantCode,
         $webhookUrl,
         $successUrl,
-        $cancelUrl,
+        $cancelUrl
     )
-)->preparePayload($amount, $phone);
+)->simpleRedirectPayload(
+        $amount,
+        $phone
+    );
 
-$res = $contipay
-    ->setAppMode("DEV")  // LIVE as another option
-    ->setPaymentMethod("redirect")
+$res = $contipay->setAppMode("DEV")
+    ->setPaymentMethod('redirect')
     ->process($payload);
 
 header('Content-type: application/json');
@@ -88,15 +87,9 @@ echo $res;
 #### iii. Direct Payment Example
 
 ```php
-$contipay = new Contipay(
-    'token-here', // copy from .env or paste directly
-    'secret-here', // copy from .env or paste directly
-);
-
-$phone = "263782000340";
 
 $payload = (
-    new DirectMethod(
+    new PayloadGenerator(
         $merchantCode,
         $webhookUrl
     )
@@ -104,16 +97,10 @@ $payload = (
     ->setUpProviders('Ecocash', 'EC')
     ->setUpAccountDetails($phone, 'Nigel Jaure')
     ->setUpTransaction($amount, "USD")
-    ->preparePayload();
+    ->directPayload();
 
 $res = $contipay
     ->setAppMode("DEV")
-    ->setPaymentMethod()
-    ->process($payload);
-
-
-$res = $contipay
-    ->setAppMode("DEV")  // LIVE as another option
     ->setPaymentMethod()
     ->process($payload);
 
@@ -125,15 +112,8 @@ echo $res;
 #### iv. Redirect Payment Example
 
 ```php
-$contipay = new Contipay(
-    'token-here', // copy from .env or paste directly
-    'secret-here', // copy from .env or paste directly
-);
-
-$phone = "263782000340";
-
 $payload = (
-    new RedirectMethod(
+    new PayloadGenerator(
         $merchantCode,
         $webhookUrl,
         $successUrl,
@@ -141,13 +121,36 @@ $payload = (
     )
 )->setUpCustomer('Nigel', 'Jaure', $phone, 'ZW', 'nigeljaure@gmail.com')
     ->setUpTransaction($amount, "USD")
-    ->preparePayload();
+    ->redirectPayload();
 
+$res = $contipay->setAppMode("DEV")
+    ->setPaymentMethod('redirect')
+    ->process($payload);
+
+header('Content-type: application/json');
+
+echo $res;;
+```
+
+### 4. Disburse Payment
+
+```php
+
+$payload = (
+    new PayloadGenerator(
+        $merchantCode,
+        $webhookUrl
+    )
+)->setUpCustomer('Nigel', 'Jaure', $phone, 'ZW', 'nigeljaure@gmail.com')
+    ->setUpProviders('Transfer', 'TF')
+    ->setUpAccountDetails($phone, 'Nigel Jaure')
+    ->setUpTransaction($amount, "USD")
+    ->directPayload();
 
 $res = $contipay
-    ->setAppMode("DEV")  // LIVE as another option
-    ->setPaymentMethod("redirect")
-    ->process($payload);
+    ->setAppMode("DEV")
+    ->setPaymentMethod()
+    ->disburse($payload, "checksum-here");
 
 header('Content-type: application/json');
 
