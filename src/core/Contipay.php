@@ -12,6 +12,7 @@ class Contipay
     protected string $url;
     protected string $paymentMethod = 'direct';
     protected string $acquireUrl = 'acquire/payment';
+    protected string $disburseUrl = 'disburse/payment';
     protected string $uatURL = 'https://api2-test.contipay.co.zw';
     protected string $liveURL = 'https://api-v2.contipay.co.zw';
     protected ?Client $client = null;
@@ -75,6 +76,31 @@ class Contipay
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-type' => 'application/json',
+                ],
+                'json' => $payload
+            ]);
+
+            return $response->getBody()->getContents();
+        } catch (GuzzleException $e) {
+            return json_encode(['status' => 'Error', 'message' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Disburse payment.
+     *
+     * @param array $payload
+     * @return string JSON response
+     */
+    function disburse(array $payload, string $checksum)
+    {
+        try {
+            $response = $this->client->request($this->paymentMethod, "/{$this->disburseUrl}", [
+                'auth' => [$this->token, $this->secret],
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json',
+                    'checksum' => $checksum
                 ],
                 'json' => $payload
             ]);

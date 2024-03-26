@@ -4,6 +4,9 @@ namespace Contipay\Helpers;
 
 use Contipay\Util\Reference;
 
+/**
+ * Direct and disbursement payload class
+ */
 class DirectMethod
 {
     protected int $merchantCode;
