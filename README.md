@@ -11,7 +11,7 @@
 ### 1. Install latest with Composer
 
 ```bash
-composer require nigel/contipay-php:^2.0.1
+composer require nigel/contipay-php
 ```
 
 ### 2. Require Autoload File and Classes Imports
@@ -136,6 +136,12 @@ echo $res;;
 
 ```php
 
+$privateKey = <<<EOD
+-----BEGIN PRIVATE KEY-----
+     YOUR KEY HERE 
+-----END PRIVATE KEY-----
+EOD;
+
 $payload = (
     new PayloadGenerator(
         $merchantCode,
@@ -150,7 +156,7 @@ $payload = (
 $res = $contipay
     ->setAppMode("DEV")
     ->setPaymentMethod()
-    ->disburse($payload, "checksum-here");
+    ->disburse($payload, $privateKey);
 
 header('Content-type: application/json');
 

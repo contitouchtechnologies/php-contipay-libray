@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89da8100722e42dd535c643719e57923",
+    "content-hash": "06ef461a1addcbef2a29be86eb7b05df",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -330,6 +330,43 @@
                 }
             ],
             "time": "2023-12-03T20:05:35+00:00"
+        },
+        {
+            "name": "nigel/utils",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/njzw/php-utils.git",
+                "reference": "5775bcb91050feece93128e396674aa5171d40de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/njzw/php-utils/zipball/5775bcb91050feece93128e396674aa5171d40de",
+                "reference": "5775bcb91050feece93128e396674aa5171d40de",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nigel\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "njzw",
+                    "email": "nigeljaure@icloud.com"
+                }
+            ],
+            "description": "Util Files",
+            "support": {
+                "issues": "https://github.com/njzw/php-utils/issues",
+                "source": "https://github.com/njzw/php-utils/tree/1.0.0"
+            },
+            "time": "2024-03-26T11:49:19+00:00"
         },
         {
             "name": "psr/http-client",
