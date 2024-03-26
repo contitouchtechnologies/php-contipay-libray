@@ -11,7 +11,7 @@
 ### 1. Install latest with Composer
 
 ```bash
-composer require nigel/contipay-php:^2.0.0
+composer require nigel/contipay-php:^2.0.1
 ```
 
 ### 2. Require Autoload File and Classes Imports
