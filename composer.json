@@ -1,5 +1,5 @@
 {
-    "version": "1.0.6",
+    "version": "2.0.2",
     "name": "nigel/contipay-php",
     "description": "Contipay PHP Client",
     "type": "library",
@@ -15,12 +15,24 @@
         {
             "name": "Nigel Jaure",
             "email": "nigel.jaure@contitouch.co.zw",
-            "role": "Developer"
+            "role": "Developer",
+            "homepage": "https://github.com/njzw"
+        },
+        {
+            "name": "ContiTouch Technologies",
+            "homepage": "https://contitouch.co.zw",
+            "role": "Owner"
+        },
+        {
+            "name": "ContiPay",
+            "homepage": "https://contipay.co.zw",
+            "role": "Owner"
         }
     ],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "nigel/utils": "^1.0"
     }
 }
